@@ -146,3 +146,47 @@ shareBtn.addEventListener('click', async () => {
         alert('Link copiato negli appunti!');
     }
 });
+
+// ── 8. SORTABLE TABLE ──────────────────────────────────────────
+(function() {
+    const table = document.getElementById('opp-table');
+    if (!table) return;
+
+    const headers = table.querySelectorAll('th[data-sort]');
+    let currentSort = { column: null, direction: 'asc' };
+
+    headers.forEach(th => {
+        th.addEventListener('click', () => {
+            const column = th.dataset.sort;
+            const direction = currentSort.column === column && currentSort.direction === 'asc' ? 'desc' : 'asc';
+            
+            currentSort = { column, direction };
+            
+            headers.forEach(h => h.classList.remove('sorted'));
+            th.classList.add('sorted');
+            
+            const tbody = table.querySelector('tbody');
+            const rows = Array.from(tbody.querySelectorAll('tr'));
+            
+            rows.sort((a, b) => {
+                let aVal, bVal;
+                
+                if (column === 'problema') {
+                    aVal = a.querySelector('td strong').textContent.trim().toLowerCase();
+                    bVal = b.querySelector('td strong').textContent.trim().toLowerCase();
+                    return direction === 'asc' ? aVal.localeCompare(bVal) : bVal.localeCompare(aVal);
+                } else {
+                    aVal = parseFloat(a.dataset[column] ?? a.querySelector(`td:nth-child(${getColumnIndex(th)}`)?.dataset?.order ?? 0);
+                    bVal = parseFloat(b.dataset[column] ?? b.querySelector(`td:nth-child(${getColumnIndex(th)}`)?.dataset?.order ?? 0);
+                    return direction === 'asc' ? aVal - bVal : bVal - aVal;
+                }
+            });
+            
+            rows.forEach(row => tbody.appendChild(row));
+        });
+    });
+
+    function getColumnIndex(th) {
+        return [...th.parentElement.children].indexOf(th) + 1;
+    }
+})();

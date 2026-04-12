@@ -747,3 +747,325 @@ header {
 #back-to-top {
     bottom: 25px;
 }
+
+/* DATA VISUALIZATION */
+.viz-container {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem;
+}
+
+.viz-header {
+    margin-bottom: 1rem;
+}
+
+.viz-subtitle {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+    margin-top: 0.35rem;
+    line-height: 1.4;
+}
+
+.viz-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin: 1rem 0;
+}
+
+.donut-viz {
+    text-align: center;
+    padding: 1.25rem;
+}
+
+.donut-viz .card-label {
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.duck-chart {
+    width: 100%;
+    height: auto;
+    max-height: 220px;
+}
+
+.viz-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    fill: #c8c5bc;
+    letter-spacing: 0.06em;
+}
+
+.time-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    fill: #6b6b65;
+    text-anchor: middle;
+}
+
+.annotation-text {
+    font-family: var(--sans);
+    font-size: 9px;
+    font-weight: 500;
+}
+
+.duck-main-line {
+    animation: drawLine 1.5s ease-out forwards;
+}
+
+@keyframes drawLine {
+    from {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 1000;
+    }
+    to {
+        stroke-dasharray: 1000;
+        stroke-dashoffset: 0;
+    }
+}
+
+.viz-legend {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1rem;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.72rem;
+    color: var(--ink-muted);
+    font-family: var(--mono);
+}
+
+.legend-line {
+    width: 20px;
+    height: 2px;
+    border-radius: 1px;
+}
+
+.legend-line.solid {
+    background: #2d6a4f;
+}
+
+.legend-line.dashed {
+    background: repeating-linear-gradient(
+        90deg,
+        #c8c5bc 0px,
+        #c8c5bc 4px,
+        transparent 4px,
+        transparent 8px
+    );
+}
+
+.legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.legend-dot.solar {
+    background: #f7c948;
+}
+
+/* Donut Chart */
+.donut-chart {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto;
+}
+
+.donut-chart.small {
+    width: 140px;
+    height: 140px;
+}
+
+.donut-percent {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 700;
+    fill: var(--ink);
+}
+
+.donut-percent.small {
+    font-size: 22px;
+}
+
+.donut-label {
+    font-family: var(--mono);
+    font-size: 10px;
+    fill: var(--ink-muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.donut-label.small {
+    font-size: 9px;
+}
+
+.donut-legend {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.donut-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    color: var(--ink-muted);
+    font-family: var(--mono);
+}
+
+.donut-swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+}
+
+.donut-swatch.pre {
+    background: #e07a00;
+}
+
+.donut-swatch.post {
+    background: #2d6a4f;
+}
+
+.donut-swatch.eff-a {
+    background: #2d6a4f;
+}
+
+.donut-swatch.eff-c {
+    background: #74c69d;
+}
+
+.donut-swatch.eff-d {
+    background: #f7c948;
+}
+
+.donut-swatch.eff-f {
+    background: #e07a00;
+}
+
+.energy-classes {
+    gap: 0.6rem;
+}
+
+/* SORTABLE TABLE */
+.sub-text {
+    font-size: 0.78rem;
+    color: var(--ink-muted);
+}
+
+.opp-table th {
+    cursor: pointer;
+    user-select: none;
+    transition: background 0.2s;
+    position: relative;
+}
+
+.opp-table th:hover {
+    background: rgba(45, 106, 79, 0.05);
+}
+
+.sort-icon {
+    font-size: 0.6rem;
+    opacity: 0.4;
+    margin-left: 0.25rem;
+    transition: opacity 0.2s;
+}
+
+.opp-table th.sorted .sort-icon {
+    opacity: 1;
+}
+
+.opp-table th[data-sort="impatto"].sorted .sort-icon,
+.opp-table th[data-sort="maturita"].sorted .sort-icon,
+.opp-table th[data-sort="accesso"].sorted .sort-icon {
+    color: var(--accent);
+}
+
+/* Semantic row backgrounds */
+.opp-table tbody tr {
+    transition: background 0.2s;
+}
+
+/* Impatto Molto Alto - green tint */
+.opp-table tbody tr[data-impatto="3"] td {
+    background: rgba(45, 106, 79, 0.04);
+}
+
+.opp-table tbody tr[data-impatto="3"] td:first-child {
+    border-left: 3px solid #2d6a4f;
+}
+
+/* Accesso Molto Alta (barriera) - red tint */
+.opp-table tbody tr[data-accesso="-1"] td {
+    background: rgba(220, 53, 69, 0.04);
+}
+
+.opp-table tbody tr[data-accesso="-1"] td:last-child {
+    border-right: 3px solid #dc3545;
+}
+
+/* Entry consigliata */
+.opp-table tbody tr[data-consigliata="true"] td {
+    background: rgba(45, 106, 79, 0.08);
+}
+
+.opp-table tbody tr[data-consigliata="true"] td:first-child {
+    border-left: 3px solid var(--accent);
+}
+
+.consigliata-cell {
+    position: relative;
+}
+
+.badge-consigliata {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    background: var(--accent);
+    color: #fff;
+    padding: 0.15rem 0.45rem;
+    border-radius: 2px;
+    vertical-align: middle;
+    margin-left: 0.3rem;
+}
+
+/* Badge with green background for high impact */
+.badge-green-impact {
+    background: #c8e6c9;
+    color: #1b5e20;
+}
+
+/* Highlight sorted column */
+.opp-table th[data-sort="impatto"].sorted + th,
+.opp-table th[data-sort="maturita"].sorted ~ th {
+    background: rgba(45, 106, 79, 0.02);
+}
+
+.opp-table tbody tr:hover td {
+    background: rgba(45, 106, 79, 0.06) !important;
+}
+
+/* Responsive viz */
+@media (max-width: 640px) {
+    .viz-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .duck-chart {
+        max-height: 180px;
+    }
+    
+    .viz-legend {
+        gap: 1rem;
+    }
+}
