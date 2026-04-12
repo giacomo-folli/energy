@@ -409,7 +409,7 @@ h2 {
 footer {
     border-top: 1px solid var(--border);
     padding: 3rem 2rem;
-    max-width: 860px;
+    max-width: 960px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
@@ -819,6 +819,7 @@ header {
         stroke-dasharray: 1000;
         stroke-dashoffset: 1000;
     }
+
     to {
         stroke-dasharray: 1000;
         stroke-dashoffset: 0;
@@ -852,13 +853,11 @@ header {
 }
 
 .legend-line.dashed {
-    background: repeating-linear-gradient(
-        90deg,
-        #c8c5bc 0px,
-        #c8c5bc 4px,
-        transparent 4px,
-        transparent 8px
-    );
+    background: repeating-linear-gradient(90deg,
+            #c8c5bc 0px,
+            #c8c5bc 4px,
+            transparent 4px,
+            transparent 8px);
 }
 
 .legend-dot {
@@ -957,102 +956,72 @@ header {
     gap: 0.6rem;
 }
 
-/* SORTABLE TABLE */
-.sub-text {
-    font-size: 0.78rem;
+/* AUTHOR SECTION */
+.author-section {
+    padding-top: 1rem;
+}
+
+.author-card {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    /* background: var(--surface); 
+     border: 1px solid var(--border); */
+    border-radius: 4px;
+    padding: 2rem;
+}
+
+.author-photo {
+    flex-shrink: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid var(--border);
+}
+
+.author-photo svg {
+    width: 100%;
+    height: 100%;
+}
+
+.author-content {
+    flex: 1;
+}
+
+.author-name {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 0.25rem 0 0.75rem;
+    line-height: 1.2;
+}
+
+.author-bio {
+    font-size: 0.9rem;
+    color: var(--ink);
+    line-height: 1.65;
+    margin-bottom: 0.75rem;
+}
+
+.author-qualification {
+    font-size: 0.82rem;
     color: var(--ink-muted);
+    line-height: 1.6;
+    font-style: italic;
 }
 
-.opp-table th {
-    cursor: pointer;
-    user-select: none;
-    transition: background 0.2s;
-    position: relative;
-}
+@media (max-width: 560px) {
+    .author-card {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
 
-.opp-table th:hover {
-    background: rgba(45, 106, 79, 0.05);
-}
-
-.sort-icon {
-    font-size: 0.6rem;
-    opacity: 0.4;
-    margin-left: 0.25rem;
-    transition: opacity 0.2s;
-}
-
-.opp-table th.sorted .sort-icon {
-    opacity: 1;
-}
-
-.opp-table th[data-sort="impatto"].sorted .sort-icon,
-.opp-table th[data-sort="maturita"].sorted .sort-icon,
-.opp-table th[data-sort="accesso"].sorted .sort-icon {
-    color: var(--accent);
-}
-
-/* Semantic row backgrounds */
-.opp-table tbody tr {
-    transition: background 0.2s;
-}
-
-/* Impatto Molto Alto - green tint */
-.opp-table tbody tr[data-impatto="3"] td {
-    background: rgba(45, 106, 79, 0.04);
-}
-
-.opp-table tbody tr[data-impatto="3"] td:first-child {
-    border-left: 3px solid #2d6a4f;
-}
-
-/* Accesso Molto Alta (barriera) - red tint */
-.opp-table tbody tr[data-accesso="-1"] td {
-    background: rgba(220, 53, 69, 0.04);
-}
-
-.opp-table tbody tr[data-accesso="-1"] td:last-child {
-    border-right: 3px solid #dc3545;
-}
-
-/* Entry consigliata */
-.opp-table tbody tr[data-consigliata="true"] td {
-    background: rgba(45, 106, 79, 0.08);
-}
-
-.opp-table tbody tr[data-consigliata="true"] td:first-child {
-    border-left: 3px solid var(--accent);
-}
-
-.consigliata-cell {
-    position: relative;
-}
-
-.badge-consigliata {
-    font-family: var(--mono);
-    font-size: 0.6rem;
-    letter-spacing: 0.08em;
-    background: var(--accent);
-    color: #fff;
-    padding: 0.15rem 0.45rem;
-    border-radius: 2px;
-    vertical-align: middle;
-    margin-left: 0.3rem;
-}
-
-/* Badge with green background for high impact */
-.badge-green-impact {
-    background: #c8e6c9;
-    color: #1b5e20;
-}
-
-/* Highlight sorted column */
-.opp-table th[data-sort="impatto"].sorted + th,
-.opp-table th[data-sort="maturita"].sorted ~ th {
-    background: rgba(45, 106, 79, 0.02);
-}
-
-.opp-table tbody tr:hover td {
-    background: rgba(45, 106, 79, 0.06) !important;
+    .author-content {
+        text-align: center;
+    }
 }
 
 /* Responsive viz */
@@ -1060,11 +1029,11 @@ header {
     .viz-row {
         grid-template-columns: 1fr;
     }
-    
+
     .duck-chart {
         max-height: 180px;
     }
-    
+
     .viz-legend {
         gap: 1rem;
     }
