@@ -31,10 +31,10 @@ jobs:
       - name: Upload Artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '/'
+          path: '/build'
 
   deploy:
-    # needs: build_site
+    needs: build_site
     runs-on: ubuntu-latest
     environment:
       name: github-pages
